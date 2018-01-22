@@ -20,7 +20,8 @@
 
   <dsp:include page="common/header.jsp">
     <dsp:param name="pagename" value="Artists"/>
-  </dsp:include>    
+  </dsp:include>
+
     <table width="700" cellpadding="8">
       <tr>
         <!-- Sidebar -->
@@ -33,30 +34,33 @@
         <!-- Page Body -->
 
 
+
+
+
+
 <td VALIGN=TOP><!-- *** Start page content *** -->
-<ol>
-<li>
-<font face="Verdana,Geneva,Arial"><font size=-1><a href="artistDetails.html">The
-Beatles</a>&nbsp;</font></font></li>
-
-<li>
-<font face="Verdana,Geneva,Arial"><font size=-1><a href="artistDetails.html">Leonard
-Cohen</a>&nbsp;</font></font></li>
-
-<li>
-<font face="Verdana,Geneva,Arial"><font size=-1><a href="artistDetails.html">Loreena
-McKennitt</a>&nbsp;</font></font></li>
-
-<li>
-<font face="Verdana,Geneva,Arial"><font size=-1><a href="artistDetails.html">R.E.M.</a>&nbsp;</font></font></li>
-</ol>
-
-
+  <ol>
+    <dsp:droplet name="/atg/dynamo/droplet/RQLQueryForEach">
+            <dsp:param name="itemDescriptor" value="artist"/>
+            <dsp:param name="repository" value="/dynamusic/SongsRepository"/>
+            <dsp:param name="queryRQL" value="ALL ORDER BY name"/>
+            <dsp:oparam name="output">
+              <li><dsp:a href="artistDetails.jsp">
+                     <dsp:param name="itemId" param="element.id" />
+                     <dsp:valueof param="element.name"/>
+                  </dsp:a>
+            </dsp:oparam>
+            <dsp:oparam name="empty">
+              Artists mot exist
+            </dsp:oparam>
+    </dsp:droplet>
+  </ol>
           <!-- *** End content *** -->
           
           </font>
         </td>
     </table>
+
   </BODY>
 </HTML>
 </dsp:page>

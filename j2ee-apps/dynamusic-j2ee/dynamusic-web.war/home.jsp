@@ -35,14 +35,14 @@
           <font face="Verdana,Geneva,Arial" 
                 size="-1" color="steelblue">
             <b>
-              <a href="home.html">Home</a><br>
+              <a href="home.jsp">Home</a><br>
               &nbsp;<br>
-              <a href="artists.html">Artists</a> <br>
-              <a href="venues.html">Venues</a> <br>
-              <a href="search.html">Search</a> <br>
-              <a href="updateProfile.html">Profile</a> <br>
+              <a href="artists.jsp">Artists</a> <br>
+              <a href="venues.jsp">Venues</a> <br>
+              <a href="search.jsp">Search</a> <br>
+              <a href="updateProfile.jsp">Profile</a> <br>
               &nbsp;<br>
-              <a href="logout.html">Log Out</a> <br>
+              <a href="logout.jsp">Log Out</a> <br>
               &nbsp;<br>
             </b>
           </font>
@@ -96,7 +96,7 @@
                 </td>
                 <td width="160" align="center">
                   Featured Album:<br>
-                  <a href="albumDetails.html"><img src="images/BookOfSecrets.jpg"><br>
+                  <a href="albumDetails.jsp"><img src="images/BookOfSecrets.jpg"><br>
                     <b>The Book of Secrets</b> - Loreena McKennitt
                   </a>
                 </td>
@@ -106,9 +106,9 @@
                 <td valign="top">
                   Playing at a venue near you... <p>
                   <ul>
-                    <li> 22 May 2004 - <a href="concertDetails.html">Eric Clapton at the House of Blues</a>
-                    <li> 9 June 2004 - <a href="concertDetails.html">Loreena McKennitt at Sanders Theater</a>
-                    <li> 14 June 2004 - <a href="concertDetails.html">Shania Twain at the Fleet Center</a>
+                    <li> 22 May 2004 - <a href="concertDetails.jsp">Eric Clapton at the House of Blues</a>
+                    <li> 9 June 2004 - <a href="concertDetails.jsp">Loreena McKennitt at Sanders Theater</a>
+                    <li> 14 June 2004 - <a href="concertDetails.jsp">Shania Twain at the Fleet Center</a>
                   </ul>
                 </td>
               </tr>

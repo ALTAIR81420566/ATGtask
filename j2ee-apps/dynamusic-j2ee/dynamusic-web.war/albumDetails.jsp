@@ -16,10 +16,14 @@
   </HEAD>
   <BODY>
 
+  <dsp:droplet name="/dynamusic/AlbumLookupDroplet">
+    <dsp:param name="id" param="itemId"/>
+    <dsp:oparam name="output">
+
     <!-- (replace this entire table by dynamically including 
           common/header.html) -->
     <dsp:include page="common/header.jsp">
-        <dsp:param name="pagename" value="(Album Title)"/>
+        <dsp:param name="pagename" param="element.title"/>
     </dsp:include>
     <table width="700" cellpadding="8">
       <tr>
@@ -33,64 +37,55 @@
 
 <!-- Page Body -->
 
-<td VALIGN=TOP>
-<!-- *** Start page content *** -->
-<table CELLPADDING=10 >
-<tr>
-<td VALIGN=TOP><img SRC="images/ImYourMan.jpg" NOSAVE height=119 width=120></td>
+        <td valign="top">
+          <font face="Verdana,Geneva,Arial" size="-1">
+          
+          <!-- *** Start page content *** -->
+            
+            <table cellpadding="10">
+              <tr>
+                <td valign="top"> <img src="<dsp:valueof param='element.coverURL'/>"></td>
+                <td valign="top">
+                  <font face="Geneva,Arial" size="-1">
+                     <dsp:valueof param="element.description"/>
+                  
+		  <b><p>Published: <dsp:valueof param="element.date" date="MMM dd,yyyy"/><b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+            <dsp:droplet name="/atg/dynamo/droplet/ForEach">
+              <dsp:param name="array" param="element.songList"/>
+              <dsp:oparam name="outputStart">
+                <ul>
+              </dsp:oparam>
+              <dsp:oparam name="outputEnd">
+                </ul>
+              </dsp:oparam>
+              <dsp:oparam name="output">
+ 							  
+                <li>
+                   <dsp:a href="song.jsp">
+	                    <dsp:param name="itemId" param="element.id"/>
+                      <dsp:valueof param="element.title"/>
+                   </dsp:a>
+            
+              </dsp:oparam>
+              <dsp:oparam name="empty">
+                There are no songs in this album.
+              </dsp:oparam>
+            </dsp:droplet>
+            
+          </font>
+        </td>
+     </tr>
+    </table>
 
-<td VALIGN=TOP><font face="Geneva,Arial"><font size=-1>Now in Vienna there's
-ten pretty women</font></font>
-<br><font face="Geneva,Arial"><font size=-1>There's a shoulder where Death
-comes to cry</font></font>
-<br><font face="Geneva,Arial"><font size=-1>There's a lobby with nine hundred
-windows</font></font>
-<br><font face="Geneva,Arial"><font size=-1>There's a tree where the doves
-go to die</font></font>
-<br><font face="Geneva,Arial"><font size=-1>There's a piece that was torn
-from the morning</font></font>
-<br><font face="Geneva,Arial"><font size=-1>And it hands in the Gallery
-of Frost</font></font></td>
-</tr>
-</table>
-
-<ul>
-<li>
-<font face="Verdana,Geneva,Arial"><font size=-1><a href="song.html">First
-We Take Manhattan</a>&nbsp;</font></font></li>
-
-<li>
-<font face="Verdana,Geneva,Arial"><font size=-1><a href="song.html">Ain't
-No Cure for Love</a>&nbsp;</font></font></li>
-
-<li>
-<font face="Verdana,Geneva,Arial"><font size=-1><a href="song.html">Everybody
-Knows</a>&nbsp;</font></font></li>
-
-<li>
-<font face="Verdana,Geneva,Arial"><font size=-1><a href="song.html">I'm
-Your Man</a>&nbsp;</font></font></li>
-
-<li>
-<font face="Verdana,Geneva,Arial"><font size=-1><a href="song.html">Take
-This Waltz</a>&nbsp;</font></font></li>
-
-<li>
-<font face="Verdana,Geneva,Arial"><font size=-1><a href="song.html">Jazz
-Police</a>&nbsp;</font></font></li>
-
-<li>
-<font face="Verdana,Geneva,Arial"><font size=-1><a href="song.html">I Can't
-Forget</a>&nbsp;</font></font></li>
-
-<li>
-<font face="Verdana,Geneva,Arial"><font size=-1><a href="song.html">Tower
-of Song</a>&nbsp;</font></font></li>
-</ul>
-<!-- *** End real content *** --></td>
-</tr>
-</table>
-
+    </dsp:oparam>
+    <dsp:oparam name="empty">
+        No album with ID=<dsp:valueof param="itemId">NONE</dsp:valueof> was found, sorry.
+    </dsp:oparam>
+    </dsp:droplet>
 
   </BODY>
 </HTML>
