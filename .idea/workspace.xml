@@ -22,11 +22,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="newArtist.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="newArtist.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/newArtist.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2607562">
-              <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
+            <state vertical-scroll-proportion="-6.4814816">
+              <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="98" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editArtist.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/editArtist.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.344828">
+              <caret line="35" column="85" selection-start-line="35" selection-start-column="85" selection-end-line="35" selection-end-column="85" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/common/header.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="21" column="47" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -42,21 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="artistDetails.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="artistDetails.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/artistDetails.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="37" selection-start-line="41" selection-start-column="36" selection-end-line="41" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="albumDetails.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/albumDetails.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="36" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.6100861">
+              <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -65,8 +75,8 @@
       <file leaf-file-name="home.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/home.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.5172415">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state vertical-scroll-proportion="-13.793103">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="24" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -85,12 +95,13 @@
         <option value="$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/common/sidebar.jsp" />
         <option value="$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/common/header.jsp" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/artistDetails.jsp" />
         <option value="$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/albumDetails.jsp" />
         <option value="$PROJECT_DIR$/config/dynamusic/EventsRepository.xml" />
         <option value="$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/artists.jsp" />
         <option value="$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/home.jsp" />
         <option value="$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/newArtist.jsp" />
+        <option value="$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/artistDetails.jsp" />
+        <option value="$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/editArtist.jsp" />
       </list>
     </option>
   </component>
@@ -224,7 +235,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -437,7 +448,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1329114" sideWeight="0.49791667" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.08227848" sideWeight="0.49791667" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1107595" sideWeight="0.50208336" order="-1" side_tool="true" content_ui="tabs" />
@@ -481,14 +492,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/common/header.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.481482">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5521472">
@@ -513,26 +516,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/artistDetails.jsp">
+    <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/newArtist.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="37" selection-start-line="41" selection-start-column="36" selection-end-line="41" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/albumDetails.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="36" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="36" />
+        <state vertical-scroll-proportion="-6.4814816">
+          <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="98" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/home.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.5172415">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state vertical-scroll-proportion="-13.793103">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="24" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/albumDetails.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35629454">
+          <caret line="51" column="24" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/common/header.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="47" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/editArtist.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.344828">
+          <caret line="35" column="85" selection-start-line="35" selection-start-column="85" selection-end-line="35" selection-end-column="85" />
           <folding />
         </state>
       </provider>
@@ -545,10 +564,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/newArtist.jsp">
+    <entry file="file://$PROJECT_DIR$/j2ee-apps/dynamusic-j2ee/dynamusic-web.war/artistDetails.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2607562">
-          <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.6100861">
+          <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
           <folding />
         </state>
       </provider>
