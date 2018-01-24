@@ -1,0 +1,27 @@
+<!-- This file provides a starting point for extending the 
+     profile repository.
+
+     The comments below coincide with the instructions in the
+     lab.
+ -->
+     
+<gsa-template>
+
+ <item-descriptor name="user" >
+
+    <table name="dynamusic_user" type="auxiliary" id-column-name="user_id">	
+		<property name="info" column-name="info" data-type="string"/>
+		<property name="shareProfile" column-name="share_profile" data-type="boolean"/>
+	</table>
+	
+    <table name="dynamusic_prefgenres" type="multi" id-column-name="id">	
+		<property name="prefGenres" column-name="genre" data-type="set" component-data-type="string"/>
+	</table>
+    
+    <table name="dynamusic_viewedartists" type="multi" id-column-name="user_id">	
+		<property name="viewedArtists" column-name="artist_id" data-type="set" component-item-type="artist" repository="/dynamusic/SongsRepository"/>
+	</table>
+	
+ </item-descriptor>
+
+</gsa-template>
