@@ -32,50 +32,62 @@
           
           <!-- *** Start page content *** -->
 
-          <form>
+          <dsp:form action="<%=request.getRequestURI()%>">
+
+              <dsp:droplet name="/atg/userprofiling/ProfileErrorMessageForEach">
+                <dsp:param bean="ProfileFormHandler.formExceptions" name="exceptions"/>
+                <dsp:oparam name="output">
+                  <b><dsp:valueof param="message"/></b><br>
+                </dsp:oparam>
+              </dsp:droplet>
           
             <h3>Login information (required)</h3>  
             Login:<br>
-            <input size="24" type="text"/><br>
-         
-            Password:<br>
-            <input size="24" type="password"/><br>
-  
-			Retype password to confirm:<br>
-            <input size="24" type="password"/><br>
+            <dsp:input bean="ProfileFormHandler.value.login" name="login" size="24" type="text"/><br>
+            <dsp:input bean="ProfileFormHandler.confirmPassword" type="hidden" value="true"/>
+
+             Password:<br>
+             <dsp:input bean="ProfileFormHandler.value.password" name="password" size="24" type="password"/><br>
+
+            						Retype password to confirm:<br>
+             <dsp:input bean="ProfileFormHandler.value.confirmpassword" size="24" type="password"/><br>
             <hr>
             <h3>Personal information (optional)</h3>   
             First name:<br>
-            <input size="24" type="text"/><br>
+            <dsp:input bean="ProfileFormHandler.value.firstName" name="firstName" size="24" type="text"/><br>
           
             Last name:<br>
-            <input size="24" type="text"/><br>
+            <dsp:input bean="ProfileFormHandler.value.lastName" name="firstName" size="24" type="text"/><br>
             <br>
 
             State:<br>
-            <input size="2" type="text"/><br>
+            <dsp:input bean="ProfileFormHandler.value.homeAddress.state" name="state" size="2" type="text"/><br>
             <br>
 
-            Your favorite genres:<br>
-            <input type="checkbox" value="pop"/>Pop<br>
-            <input type="checkbox" value="jazz"/>Jazz<br>
-            <input type="checkbox" value="classical"/>Classical<br>
-            <input type="checkbox" value="blues"/>Blues<br>
-            <input type="checkbox" value="country"/>Country<br>
-            <br>
-            Make your profile viewable by others?<br>
-            <input type="radio" value="true"/>yes<br>
-            <input type="radio" value="false"/>no<br>
-            <br>
-            Personal info:<br>
-            <textarea bean="/atg/userprofiling/ProfileFormHandler.value.info" name="info" rows="5" cols="40"></textarea><br>
-            <br>
+             Your favorite genres:<br>
+              <dsp:input bean="ProfileFormHandler.value.prefGenres" name="prefGenres" type="checkbox" value="pop"/>Pop<br>
+              <dsp:input bean="ProfileFormHandler.value.prefGenres" name="prefGenres" type="checkbox" value="jazz"/>Jazz<br>
+              <dsp:input bean="ProfileFormHandler.value.prefGenres" name="prefGenres" type="checkbox" value="classical"/>Classical<br>
+              <dsp:input bean="ProfileFormHandler.value.prefGenres" name="prefGenres" type="checkbox" value="blues"/>Blues<br>
+              <dsp:input bean="ProfileFormHandler.value.prefGenres" name="prefGenres" type="checkbox" value="country"/>Country<br>
+              <br>
+              Make your profile viewable by others?<br>
+              <dsp:input bean="ProfileFormHandler.value.shareProfile" name="shareProfile" type="radio" value="true"/>yes<br>
+              <dsp:input bean="ProfileFormHandler.value.shareProfile" name="shareProfile" type="radio" value="false"/>no<br>
+              <br>
+              Personal info:<br>
+              <dsp:textarea bean="ProfileFormHandler.value.info" name="info" rows="5" cols="40"/><br>
+             <br>
           
             <!-- defines the URL to go to on success (relative to 'action')-->
-            <input type="Submit" value="Register"/>
-            <input type="Submit" value="Cancel"/>
+            <dsp:input bean="ProfileFormHandler.createSuccessURL" type="hidden" value="home.jsp"/>
+            <dsp:input bean="ProfileFormHandler.create" type="submit" value="Register" />
+
+            <dsp:input bean="ProfileFormHandler.cancelURL" type="hidden" value="home.jsp"/>
+            <dsp:input bean="ProfileFormHandler.cancel" type="submit" value="Cancel" />
+
           
-          <form>
+          </dsp:form>
                         
           <!-- *** End real content *** -->
           

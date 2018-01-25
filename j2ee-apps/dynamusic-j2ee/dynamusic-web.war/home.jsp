@@ -14,6 +14,7 @@
 
 <dspel:page>
 <dspel:importbean bean="/atg/userprofiling/Profile"/>
+<dsp:importbean bean="/atg/dynamo/droplet/Switch"/>
 <HTML>
   <HEAD>
     <TITLE>Dynamusic Home</TITLE>
@@ -59,6 +60,7 @@
             <table width="560">
               <tr>
                 <td>
+
 
                   <dspel:droplet name="/atg/dynamo/droplet/Switch">
                       <dspel:param bean="Profile.transient" name="value"/>
