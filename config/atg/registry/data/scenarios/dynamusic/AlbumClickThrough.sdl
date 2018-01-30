@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
-
-<!DOCTYPE scenario
-  SYSTEM
-  "dynamosystemresource:/atg/scenario/definition/sdl.dtd">
-
-<scenario author="admin" creation-time="1054210860219" enabled="true" last-modified-by="admin" modification-time="1055358304200">
-  <segment migrate-users="true">
+<!DOCTYPE process SYSTEM "dynamosystemresource:/atg/dtds/pdl/pdl_1.0.dtd">
+<process author="admin" creation-time="1054210860219" enabled="true" last-modified-by="admin" modification-time="1516971872877">
+  <segment migrate-subjects="true">
     <segment-name>albumClickThrough</segment-name>
     <!--================================-->
     <!--== Clicks a link to page named Dynamusic.com:/albumDetails.jsp  -->
@@ -21,7 +16,7 @@
       </filter>
     </event>
     <!--================================-->
-    <!--== Record event Clicks a Link in dataset DPS ClickThrough  -->
+    <!--== Record event Clicks a link in dataset DPS ClickThrough  -->
     <!--================================-->
     <action id="2">
       <action-name>recordEvent</action-name>
@@ -30,4 +25,4 @@
       </action-param>
     </action>
   </segment>
-</scenario>
+</process>

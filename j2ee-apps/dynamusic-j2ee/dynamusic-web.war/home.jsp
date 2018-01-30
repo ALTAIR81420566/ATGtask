@@ -1,29 +1,21 @@
-<!-------------------------------------------------------------
-  Dynamusic Site             DAF Site Mockup
+<%@ taglib uri="/dspTaglib" prefix="dsp" %>
+<dsp:page>
+<dsp:importbean bean="/atg/userprofiling/Profile"/>
+<dsp:importbean bean="/dynamusic/FeaturedSongs"/>
   
-  HOME
-  
-  Central page for the site; landing point following login, 
-  providing starting point for site's pages.
-  
-  Version 4 - adds slot to advertise concerts for viewed 
-              artists.
-  
-  ------------------------------------------------------------->
- <%@ taglib prefix="dspel"  uri="http://www.atg.com/taglibs/daf/dspjspELTaglib1_0" %>
 
-<dspel:page>
-<dspel:importbean bean="/atg/userprofiling/Profile"/>
-<dsp:importbean bean="/atg/dynamo/droplet/Switch"/>
 <HTML>
   <HEAD>
     <TITLE>Dynamusic Home</TITLE>
   </HEAD>
   <BODY>
-
-   <dspel:include page="common/header.jsp">
-      <dspel:param name="pagename" value="Home Page"/>
-   </dspel:include>
+    <!-- (replace this entire section by dynamically including 
+          common/header.jsp) -->
+    <dsp:include page="common/header.jsp">
+       <dsp:param name="pagename" value="Home Page"/>
+    </dsp:include>
+    <!-- (end header banner) -->
+    
 
     <table width="700" cellpadding="8">
       <tr>
@@ -33,20 +25,7 @@
           <td width="100" bgcolor="ghostwhite" valign="top">
           <!-- (replace contents of this table cell by 
                 dynamically including common/sidebar.html) -->
-          <font face="Verdana,Geneva,Arial" 
-                size="-1" color="steelblue">
-            <b>
-              <a href="home.jsp">Home</a><br>
-              &nbsp;<br>
-              <a href="artists.jsp">Artists</a> <br>
-              <a href="venues.jsp">Venues</a> <br>
-              <a href="search.jsp">Search</a> <br>
-              <a href="updateProfile.jsp">Profile</a> <br>
-              &nbsp;<br>
-              <a href="logout.jsp">Log Out</a> <br>
-              &nbsp;<br>
-            </b>
-          </font>
+            <dsp:include page="common/sidebar.jsp"></dsp:include>        
           <!-- end sidebar -->
         </td>
 
@@ -61,57 +40,71 @@
               <tr>
                 <td>
 
-
-                  <dspel:droplet name="/atg/dynamo/droplet/Switch">
-                      <dspel:param bean="Profile.transient" name="value"/>
-                          <dspel:oparam name="true">
-                            <p>Welcome to Dynamusic.  <a href="newProfile.jsp">Click here</a> to register. </p>
-                          </dspel:oparam>
-                          <dspel:oparam name="false">
-                            <p>Welcome, <dspel:valueof bean="Profile.firstName"/>! <p>
-                      </dspel:oparam>
-                  </dspel:droplet>
-
-
+                <dsp:droplet name="/atg/dynamo/droplet/Switch">
+                  <dsp:param bean="Profile.transient" name="value"/>
+                  <dsp:oparam name="true">
+                     Welcome to Dynamusic.  <a href="newProfile.jsp">Click here</a> to register. <p>
+                  </dsp:oparam>
+                  <dsp:oparam name="false">
+                    <p>Welcome, <dsp:valueof bean="Profile.firstName"/><p>
+                  </dsp:oparam>
+                </dsp:droplet>
+                  
                   This week's featured songs are:
 
-                  <dspel:droplet name="/atg/dynamo/droplet/ForEach">
-                          <dspel:param bean="FeaturedSongs.songs" name="array"/>
-                          <dspel:oparam name="outputStart">
-                              <ul>
-                          </dspel:oparam>
-                          <dspel:oparam name="outputEnd">
-                              </ul>
-                          </dspel:oparam>
-                          <dspel:oparam name="output">
-                              <li><dspel:valueof param="element"/>
-
-                          </dspel:oparam>
-                          <dspel:oparam name="empty">
-                              No featured songs this week.
-                          </dspel:oparam>
-                      </dspel:droplet>
-
+                  <dsp:droplet name="/atg/dynamo/droplet/ForEach">
+                    <dsp:param bean="FeaturedSongs.songs" name="array"/>
+                    <dsp:oparam name="outputStart">
+                      <ul>
+                    </dsp:oparam>
+                    <dsp:oparam name="outputEnd">
+                      </ul>
+                    </dsp:oparam>
+                    <dsp:oparam name="output">
+                      <li><dsp:valueof param="element"/>
                   
-
+                    </dsp:oparam>
+                    <dsp:oparam name="empty">
+                      No featured songs this week.
+                    </dsp:oparam>
+                  </dsp:droplet>
 
                 </td>
+
                 <td width="160" align="center">
-                  Featured Album:<br>
-                  <a href="albumDetails.jsp"><img src="images/BookOfSecrets.jpg"><br>
-                    <b>The Book of Secrets</b> - Loreena McKennitt
-                  </a>
+                <dsp:droplet name="/atg/targeting/TargetingForEach">
+                  <dsp:param bean="/atg/registry/Slots/AlbumPromo" name="targeter"/>
+                  <dsp:oparam name="output">
+                    Featured Album:<br>
+                    <dsp:a href="albumDetails.jsp">
+                       <dsp:param name="itemId" param="element.id"/>
+                       <dsp:param name="dsource" value="albumpromo"/>
+                       <img src="<dsp:valueof param='element.coverURL'/>"/><br>
+                         <b><dsp:valueof param='element.title'/></b> - <dsp:valueof param='element.artist.name'/>
+                    </dsp:a>
+                  </dsp:oparam>
+                </dsp:droplet>
                 </td>
+
               </tr>
               <tr><td height="80">&nbsp;</td><td></td></tr>
               <tr>
                 <td valign="top">
-                  Playing at a venue near you... <p>
-                  <ul>
-                    <li> 22 May 2004 - <a href="concertDetails.jsp">Eric Clapton at the House of Blues</a>
-                    <li> 9 June 2004 - <a href="concertDetails.jsp">Loreena McKennitt at Sanders Theater</a>
-                    <li> 14 June 2004 - <a href="concertDetails.jsp">Shania Twain at the Fleet Center</a>
-                  </ul>
+                    <ul>
+                        <dsp:droplet name="/atg/targeting/TargetingForEach">
+                          <dsp:param bean="/atg/registry/RepositoryTargeters/EventsRepository/VenueTargeter" name="targeter"/>
+                          <dsp:oparam name="output">
+                              <li>
+                                  <dsp:a href="venueDetails.jsp">
+                                  <dsp:param name="itemId" param="element.id"/>
+                                  <dsp:valueof param="element.name"/>
+                                  </dsp:a>
+                              </li>
+                          </dsp:oparam>
+                             <dsp:oparam name="empty">
+                          </dsp:oparam>
+                        </dsp:droplet>
+                    </ul>
                 </td>
               </tr>
             </table>
@@ -124,4 +117,4 @@
     </table>
   </BODY>
 </HTML>
-</dspel:page>
+</dsp:page>

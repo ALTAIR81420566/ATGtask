@@ -26,17 +26,15 @@
     </dsp:oparam>
     <dsp:oparam name="output">
 
+    <dsp:droplet name="/dynamusic/ViewItemEventSender">
+           <dsp:param name="eventobject" param="element"/>
+    </dsp:droplet>
 
 
-    <!-- (replace this entire table by dynamically including 
-          common/header.html) -->
     <dsp:include page="common/header.jsp">
         <dsp:param name="pagename" param="element.name"/>
     </dsp:include>
 
-    <dsp:droplet name="/dynamusic/ViewItemEventSender">
-           <dsp:param name="eventobject" param="element"/>
-    </dsp:droplet>
 
     <table width="700" cellpadding="8">
       <tr>

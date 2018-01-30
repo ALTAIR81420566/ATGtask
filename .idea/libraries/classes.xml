@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="classes">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../DAS/lib/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../DAS/lib/servlet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../DAS/lib/jsp-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../DAS/lib/ice.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../DAS/lib/cglib-nodep-2.1_3.jar!/" />
+      <root url="file://$PROJECT_DIR$/../DAS/lib" />
+      <root url="jar://$PROJECT_DIR$/../DPS/lib/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../DSS/lib/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../DAS/lib" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../DAS/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../DAS/lib" recursive="false" type="SOURCES" />
+  </library>
+</component>
