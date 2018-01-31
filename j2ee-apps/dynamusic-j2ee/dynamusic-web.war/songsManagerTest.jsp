@@ -25,10 +25,8 @@ You must set artistId to a value (append "?artistId=xxxx" to the URL and reload)
     <dsp:oparam name="false">
        Artist Id = <dsp:valueof param="artistId">unset</dsp:valueof><br>
 
-<%! 
-
-    dynamusic.SongsManager sm; 
-%> <dsp:getvalueof id="sm" bean="SongsManager"
+<%!    dynamusic.SongsManager sm; %>
+ <dsp:getvalueof id="sm" bean="SongsManager"
 idtype="dynamusic.SongsManager">
 
    <dsp:getvalueof id="artistId" param="artistId" >

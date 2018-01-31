@@ -107,6 +107,31 @@
                     </ul>
                 </td>
               </tr>
+              <tr>
+                  <td>
+                  <dsp:droplet name="/atg/targeting/TargetingRandom">
+                    <dsp:param bean="/atg/registry/RepositoryTargeters/UserProfiles/UserInterestTargeter" name="targeter"/>
+                    <dsp:param name="howMany" value="3"/>
+                    <dsp:param name="fireContentEvent" value="false"/>
+                    <dsp:param name="fireContentTypeEvent" value="false"/>
+                    <dsp:oparam name="output">
+                       <li><dsp:a href="userDetails.jsp">
+                         <dsp:param name="itemId" param="element.id"/>
+                         <dsp:valueof param="element.firstName"/> <dsp:valueof param="element.lastName"/>
+                       </dsp:a>
+                    </dsp:oparam>
+                    <dsp:oparam name="outputStart">
+                        Users with similar interests to yours:
+                        <ul>
+                    </dsp:oparam>
+                    <dsp:oparam name="outputEnd">
+                        </ul>
+                    </dsp:oparam>
+                  </dsp:droplet>
+
+
+                    </td>
+               </tr>
             </table>
             
           <!-- *** End real content *** -->
