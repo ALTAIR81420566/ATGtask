@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Dynamusic.iml" filepath="$PROJECT_DIR$/Dynamusic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Dynamusic.iml" filepath="$PROJECT_DIR$/.idea/Dynamusic.iml" />
     </modules>
   </component>
 </project>

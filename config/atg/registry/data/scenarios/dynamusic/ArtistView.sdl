@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE process SYSTEM "dynamosystemresource:/atg/dtds/pdl/pdl_1.0.dtd">
+<process author="admin" creation-time="1516975774392" enabled="true" last-modified-by="admin" modification-time="1516975902452">
+  <segment migrate-subjects="true">
+    <segment-name>Segment 1</segment-name>
+    <!--================================-->
+    <!--== Views an item from SongsRepository of type artist  -->
+    <!--================================-->
+    <event id="1">
+      <event-name>atg.dps.ViewItem</event-name>
+      <filter construct="content-repository-filter" operator="eq">
+        <event-property>
+          <property-name>repositoryName</property-name>
+        </event-property>
+        <constant>SongsRepository</constant>
+      </filter>
+      <filter construct="content-item-descriptor" operator="eq">
+        <event-property>
+          <property-name>itemType</property-name>
+        </event-property>
+        <constant>artist</constant>
+      </filter>
+    </event>
+    <!--================================-->
+    <!--== Change Subject's viewedArtists by appending once Event's viewItem.item.displayName  -->
+    <!--================================-->
+    <action id="2">
+      <action-name construct="modify-action">modify</action-name>
+      <action-param name="modified">
+        <subject-property>
+          <property-name>viewedArtists</property-name>
+        </subject-property>
+      </action-param>
+      <action-param name="operator">
+        <constant>appendOnce</constant>
+      </action-param>
+      <action-param name="modifier">
+        <event-property construct="event-property">
+          <property-name>item</property-name>
+        </event-property>
+      </action-param>
+    </action>
+  </segment>
+</process>

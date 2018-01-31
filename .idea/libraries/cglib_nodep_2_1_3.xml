@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="cglib-nodep-2.1_3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../DAS/lib/cglib-nodep-2.1_3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../DAS/lib/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../DAS/lib/ice.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../DAS/lib/jsp-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../DAS/lib/servlet.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
