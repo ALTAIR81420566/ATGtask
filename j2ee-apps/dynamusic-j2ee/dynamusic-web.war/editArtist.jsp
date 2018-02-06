@@ -12,7 +12,6 @@
   ------------------------------------------------------------->
   
 <dsp:importbean bean="/dynamusic/ArtistFormHandler"/>
-
 <HTML>
   <HEAD>
     <TITLE>Dynamusic Artist</TITLE>
@@ -33,16 +32,17 @@
           <font face="Verdana,Geneva,Arial" size="-1">
           
           <!-- *** Start page content *** -->
-            <dsp:setvalue bean="ArtistFormHandler.repositoryId" paramvalue="itemId"/>
+            <dsp:setvalue bean="ArtistFormHandler.repositoryId" paramvalue="artistId"/>
             <dsp:form action="<%=request.getRequestURI()%>">
 
-            <dsp:input bean="ArtistFormHandler.repositoryId" type="hidden" paramvalue="itemId"/>
 
                           <dsp:droplet name="/atg/dynamo/droplet/ErrorMessageForEach">
                             <dsp:oparam name="output">
                               <b><dsp:valueof param="message"/></b><br>
                             </dsp:oparam>
                           </dsp:droplet>
+
+            <dsp:input bean="ArtistFormHandler.repositoryId" type="hidden" paramvalue="artistId"/>
 
                           <table cellpadding="10">
                             <tr>
@@ -110,5 +110,3 @@
 </HTML>
 
 </dsp:page>
-
-
