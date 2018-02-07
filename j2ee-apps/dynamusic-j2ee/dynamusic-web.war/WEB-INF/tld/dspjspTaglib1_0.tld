@@ -5840,7 +5840,7 @@
     </attribute>
 
     <attribute>
-      <name>repository</name>
+      <name>songRepo</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
     </attribute>
