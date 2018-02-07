@@ -4,6 +4,8 @@ import atg.droplet.DropletException;
 import atg.servlet.DynamoHttpServletRequest;
 import atg.servlet.DynamoHttpServletResponse;
 
+import javax.transaction.TransactionManager;
+
 /**
  * Created by Administrator on 2/6/2018.
  */
