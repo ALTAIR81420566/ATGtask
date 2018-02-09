@@ -1,6 +1,7 @@
 <%@ taglib uri="/dspTaglib" prefix="dsp" %>
 <dsp:page>
-
+<dsp:importbean bean="/atg/userprofiling/Profile"/>
+<dsp:importbean bean="/atg/dynamo/droplet/Switch"/>
 <%-- Required input param: itemId (id of the user to display --%>
 
 <!-------------------------------------------------------------
@@ -91,7 +92,43 @@
                            <td>Location</td>
                            <td><b><dsp:valueof param="element.homeAddress.state"/></b></td>
                         </tr>
+                        <tr>
+                          <td>
+                             <td> Playlists:</td>
+                             <td>
+                                <dsp:getvalueof param="element.playlists" id="plSet" idtype="java.util.Set">
+                             <dsp:droplet name="/atg/dynamo/droplet/ForEach">
 
+                                   <dsp:param value="<%= plSet %>" name="array"/>
+
+                                   <dsp:oparam name="outputStart">
+                                     <ul>
+                                   </dsp:oparam>
+                                   <dsp:oparam name="outputEnd">
+                                     </ul>
+                                   </dsp:oparam>
+                                   <dsp:oparam name="output">
+                                    <dsp:getvalueof param="element.publish" id="publ" idtype="java.lang.Boolean">
+                                       <dsp:droplet name="Switch">
+                                               <dsp:param value="<%= publ %>" name="value"/>
+                                               <dsp:oparam name="true">
+                                                   <li><dsp:a href="playlistDetails.jsp">
+                                                         <dsp:param name="itemId" param="element.id"/>
+                                                         <dsp:param name="itemName" param="element.name"/>
+                                                         <dsp:valueof param="element.name"/>
+                                                    </dsp:a>
+                                               </dsp:oparam>
+                                       </dsp:droplet>
+                                    </dsp:getvalueof>
+
+                                   </dsp:oparam>
+                                   <dsp:oparam name="empty">
+                                     You still don't have playlists
+                                   </dsp:oparam>
+                             </dsp:droplet>
+                             </dsp:getvalueof>
+                         </td>
+                        </tr>
                      </table>
                     </dsp:oparam>
                     <dsp:oparam name="false">

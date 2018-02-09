@@ -83,14 +83,21 @@ public class SongsManager extends atg.nucleus.GenericService {
                 deleteItem(pArtistId, getEventRepo(), "concert", "artists INCLUDES ITEM (id = ?0)");
                 deleteItem(pArtistId, getSongRepo(), "album", "artist.id = ?0");
             } catch (RepositoryException e) {
+                if (isLoggingError()) {
+                    logError("RepositoryException", e);
+                }
                 transactionManager.setRollbackOnly();
             } finally {
                 td.end();
             }
         } catch (TransactionDemarcationException e) {
-            e.printStackTrace();
-        } catch (SystemException e1) {
-            e1.printStackTrace();
+            if (isLoggingError()) {
+                logError("Cannot execute transaction", e);
+            }
+        } catch (SystemException e) {
+            if (isLoggingError()) {
+                logError("SystemException", e);
+            }
         }
     }
 
