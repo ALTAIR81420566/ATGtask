@@ -1,5 +1,6 @@
 <%@ taglib uri="/dspTaglib" prefix="dsp" %>
 <dsp:page>
+<dsp:importbean bean="/dynamusic/PlaylistFormHandler"/>
 <dsp:importbean bean="/atg/userprofiling/Profile"/>
 
 <%-- Required input param: itemId (id of the song to display --%>
@@ -81,6 +82,51 @@
                </b></font>
              </td>
            </tr>
+
+           <tr>
+             <td valign="top" align="right"> Add to playlist: </td>
+             <td>
+             <dsp:form action="<%=request.getRequestURI()%>">
+                <dsp:select bean="PlaylistFormHandler.playlistId">
+                  <dsp:droplet name="/atg/dynamo/droplet/ForEach">
+                    <dsp:param bean="Profile.playlists" name="array"/>
+                    <dsp:oparam name="output">
+                      <dsp:option paramvalue="element.id">
+                         <dsp:valueof param="element.name"/>
+                      </dsp:option>
+                    </dsp:oparam>
+                  </dsp:droplet>
+                </dsp:select>
+
+                <dsp:input type="hidden" bean="PlaylistFormHandler.userId" beanvalue="Profile.id"/>
+                <dsp:input type="hidden" bean="PlaylistFormHandler.songId" paramvalue="element.id"/>
+
+                <dsp:input bean="PlaylistFormHandler.addSong" type="submit" value="Add" />
+
+              </dsp:form>
+             </td>
+           </tr>
+
+           <tr>
+             <td valign="top" align="right"> It occurs in the playlists of the following users: </td>
+             <td>
+
+               <dsp:droplet name="/atg/dynamo/droplet/RQLQueryForEach">
+                 <dsp:param name="queryRQL" value="playlists INCLUDES ITEM (songs INCLUDES ITEM (id = :element.id))"/>
+                 <dsp:param name="repository"
+                 value="/atg/userprofiling/ProfileAdapterRepository"/>
+                 <dsp:param name="itemDescriptor" value="user"/>
+                 <dsp:oparam name="output">
+                   <dsp:a href="userDetails.jsp">
+                      <dsp:param name="itemId" param="element.id"/>
+                    <dsp:valueof param="element.login"/>
+                   </dsp:a>
+                 </dsp:oparam>
+               </dsp:droplet>
+             </td>
+           </tr>
+
+
           </table>
           
           &nbsp;<p>
@@ -96,7 +142,7 @@
       </tr>
     </table>
     </dsp:oparam>
-    </dsp:droplet>
+  </dsp:droplet>
   </BODY>
 </HTML>
 </dsp:page>
