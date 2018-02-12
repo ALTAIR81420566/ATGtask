@@ -67,6 +67,7 @@ public class SongsManager extends atg.nucleus.GenericService {
 
         if (itemList != null) {
             for (RepositoryItem item : itemList) {
+
                 mutRepos.removeItem(item.getPropertyValue("id").toString(), itemName);
                 if (isLoggingDebug()) {
                     logDebug(itemName + " deleted");

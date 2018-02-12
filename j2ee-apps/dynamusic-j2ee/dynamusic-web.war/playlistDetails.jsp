@@ -38,26 +38,31 @@
                             </ul>
                           </dsp:oparam>
                           <dsp:oparam name="output">
-
                             <li>
                                <dsp:a href="song.jsp">
                                     <dsp:param name="itemId" param="element.id"/>
                                   <dsp:valueof param="element.title"/>
                                </dsp:a>
-
                           </dsp:oparam>
                           <dsp:oparam name="empty">
                             There are no songs in this playlist.
                           </dsp:oparam>
                         </dsp:droplet>
+                        </br>
+                        <dsp:a href="editPlaylist.jsp">
+                             <dsp:param name="playlistId" param="element.id"/>
+                             Edit playlist
+                        </dsp:a>
+
                     </dsp:oparam>
                     <dsp:oparam name="empty">
                         No playlist with ID=<dsp:valueof param="itemId">NONE</dsp:valueof> was found, sorry.
                     </dsp:oparam>
                   </dsp:droplet>
 
-                </td>
 
+
+                </td>
 
 
             </tr>

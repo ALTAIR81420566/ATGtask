@@ -81,6 +81,52 @@ public class PlaylistFormHandler extends RepositoryFormHandler {
         }
     }
 
+    @Override
+    protected void preDeleteItem(DynamoHttpServletRequest pRequest, DynamoHttpServletResponse pResponse) throws ServletException, IOException {
+        if (isLoggingDebug()) {
+            logDebug("postDeleteItem called, item created: " + getRepositoryItem());
+        }
+        PlaylistManager pm = getPlaylistManager();
+        if (pm != null) {
+            pm.deletePlaylist(getRepositoryId(), getUserId());
+        } else {
+            if (isLoggingWarning()) {
+                logWarning("no playlist manager set");
+            }
+        }
+    }
+
+    public boolean handleDeleteSong(DynamoHttpServletRequest request, DynamoHttpServletResponse response) throws IOException {
+        if (isLoggingDebug()) {
+            logDebug("handleDeleteSong called, song deleted:" + getSongId());
+        }
+        PlaylistManager pm = getPlaylistManager();
+        pm.deleteSong(getRepositoryId(), getSongId());
+
+        if (getFormError()) {
+            if (isLoggingDebug()) {
+                logDebug("song not added");
+            }
+            if (getAddSongErrorURL() != null) {
+                if (isLoggingDebug()) logDebug("redirecting to " + getAddSongErrorURL());
+                response.sendLocalRedirect(getAddSongErrorURL(),request);
+                return false;
+            }
+            else return true;
+        }
+        if (isLoggingDebug()){
+            logDebug("song added");
+        }
+        if (getAddSongSuccessURL() != null) {
+            if (isLoggingDebug()){
+                logDebug("redirecting to " + getAddSongSuccessURL());
+            }
+            response.sendLocalRedirect(getAddSongSuccessURL(), request);
+            return false;
+        }
+        return true;
+    }
+
     public boolean handleAddSong(DynamoHttpServletRequest request, DynamoHttpServletResponse response) throws IOException {
         if (isLoggingDebug()) {
             logDebug("handleAddSong called");
