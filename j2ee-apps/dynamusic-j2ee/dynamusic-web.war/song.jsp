@@ -98,6 +98,14 @@
                   </dsp:droplet>
                 </dsp:select>
 
+                <dsp:input type="hidden" bean="PlaylistFormHandler.formName" value="addSong"/>
+                <dsp:input type="hidden" bean="PlaylistFormHandler.sendMessages" value="true"/>
+
+                <dsp:droplet name="/dynamusic/ViewItemEventSender">
+                    <dsp:param name="eventobject" param="element"/>
+                </dsp:droplet>
+
+
                 <dsp:input type="hidden" bean="PlaylistFormHandler.userId" beanvalue="Profile.id"/>
                 <dsp:input type="hidden" bean="PlaylistFormHandler.songId" paramvalue="element.id"/>
 
@@ -110,9 +118,9 @@
            <tr>
              <td valign="top" align="right"> It occurs in the playlists of the following users: </td>
              <td>
-
+               <dsp:setvalue param="userid" beanvalue="Profile.id"/>
                <dsp:droplet name="/atg/dynamo/droplet/RQLQueryForEach">
-                 <dsp:param name="queryRQL" value="playlists INCLUDES ITEM (songs INCLUDES ITEM (id = :element.id))"/>
+                 <dsp:param name="queryRQL" value=" id != :userid AND playlists INCLUDES ITEM (songs INCLUDES ITEM (id = :element.id))"/>
                  <dsp:param name="repository"
                  value="/atg/userprofiling/ProfileAdapterRepository"/>
                  <dsp:param name="itemDescriptor" value="user"/>

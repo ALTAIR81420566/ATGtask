@@ -42,10 +42,9 @@
                         You still don't have playlists
                       </dsp:oparam>
                 </dsp:droplet>
+                <a href="newPlaylist.jsp">New playlist</a>
              </td>
-
         </tr>
-
   </table>
   </BODY>
 </HTML>

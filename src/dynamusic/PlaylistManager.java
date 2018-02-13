@@ -113,4 +113,88 @@ public class PlaylistManager extends GenericService {
             }
         }
     }
+
+    public void deleteSong(String pPlaylistId, String pSongId) {
+        if (isLoggingDebug()) {
+            logDebug("deleting song " + pSongId + " from playlist " + pPlaylistId);
+        }
+        try {
+            MutableRepository userRep = (MutableRepository) getUserRepo();
+            Repository songsRep = getSongRepo();
+            TransactionDemarcation td = new TransactionDemarcation();
+            try {
+                MutableRepositoryItem playlist = userRep.getItemForUpdate(pPlaylistId, "playlist");
+                Set playlistSet = (Set) playlist.getPropertyValue("songs");
+
+                RepositoryItem song = songsRep.getItem(pSongId, "song");
+                playlistSet.remove(song);
+
+                userRep.updateItem(playlist);
+
+            } catch (RepositoryException e) {
+                if (isLoggingError()) {
+                    logError("Cannot remove song to playlist", e);
+                }
+                transactionManager.setRollbackOnly();
+            } finally {
+                td.end();
+            }
+        } catch (TransactionDemarcationException e) {
+            if (isLoggingError()) {
+                logError("Cannot execute transaction", e);
+            }
+        } catch (SystemException e) {
+            if (isLoggingError()) {
+                logError("SystemException", e);
+            }
+        }
+
+    }
+
+    public void deletePlaylist(String pPlaylistId, String pUserId) {
+        if (isLoggingDebug()) {
+            logDebug("deleting playlist " + pPlaylistId);
+        }
+        try {
+            MutableRepository userRep = (MutableRepository) getUserRepo();
+            Repository songsRep = getSongRepo();
+            TransactionDemarcation td = new TransactionDemarcation();
+            try {
+                MutableRepositoryItem playlistRepIt = userRep.getItemForUpdate(pPlaylistId, "playlist");
+                MutableRepositoryItem user = userRep.getItemForUpdate(pUserId, "user");
+
+                Set songSet = (Set) playlistRepIt.getPropertyValue("songs");
+                Set <RepositoryItem> playlists = (Set <RepositoryItem>) user.getPropertyValue("playlists");
+
+                for(RepositoryItem pl : playlists){
+                    if(pl.getPropertyValue("id").equals(pPlaylistId)){
+                        playlists.remove(pl);
+                        break;
+                    }
+                }
+
+                songSet.clear();
+
+                userRep.updateItem(playlistRepIt);
+                userRep.updateItem(user);
+                userRep.removeItem(pPlaylistId, "playlist");
+
+            } catch (RepositoryException e) {
+                if (isLoggingError()) {
+                    logError("Cannot remove playlist", e);
+                }
+                transactionManager.setRollbackOnly();
+            } finally {
+                td.end();
+            }
+        } catch (TransactionDemarcationException e) {
+            if (isLoggingError()) {
+                logError("Cannot execute transaction", e);
+            }
+        } catch (SystemException e) {
+            if (isLoggingError()) {
+                logError("SystemException", e);
+            }
+        }
+    }
 }
