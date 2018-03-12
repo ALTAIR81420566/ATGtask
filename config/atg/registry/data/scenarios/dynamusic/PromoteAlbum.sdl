@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE process SYSTEM "dynamosystemresource:/atg/dtds/pdl/pdl_1.0.dtd">
-<process author="admin" creation-time="1517234078847" enabled="true" last-modified-by="admin" modification-time="1517236762851">
-  <segment migrate-subjects="true">
+<process author="admin" creation-time="1517234078847" enabled="true" last-modified-by="admin" modification-time="1517296710635">
+  <segment migrate-from="1517236762851,1517240459754,1517240534911,1517296629024" migrate-subjects="true">
     <segment-name>Segment 1</segment-name>
     <!--================================-->
     <!--== Logs in  -->
@@ -26,14 +26,14 @@
       </action-param>
     </action>
   </segment>
-  <segment migrate-subjects="true">
+  <segment migrate-from="1517236762851,1517240459754,1517240534911,1517296629024" migrate-subjects="true">
     <segment-name>Segment 2</segment-name>
     <!--================================-->
     <!--== Views an item from SongsRepository of type artist named The Beatles  -->
     <!--================================-->
     <event id="1">
       <event-name>atg.dps.ViewItem</event-name>
-      <filter construct="content-songRepo-filter" operator="eq">
+      <filter construct="content-repository-filter" operator="eq">
         <event-property>
           <property-name>repositoryName</property-name>
         </event-property>

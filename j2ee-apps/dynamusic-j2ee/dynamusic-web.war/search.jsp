@@ -29,7 +29,6 @@
              <dsp:include page="common/sidebar.jsp"></dsp:include>
         </td>
         <!-- Page Body -->
-
         <td valign="top">
           <font face="Verdana,Geneva,Arial" size="-1">
           
@@ -38,20 +37,26 @@
             <i> Please enter the name (or first few characters) of the song you're looking for: </i>
             <p>&nbsp;<br> 
             
-            <form action="searchResults.html">
-              <table>
-              <tr>
-                <td> 
-                  <input type="text" size="40" /> 
-                </td>
-              </tr>
-              <tr>
-                <td align="center"> 
-                  &nbsp;<p> <input type="submit" value="search" /> 
-                </td>
-              </tr>
-            </form>
-
+            <dsp:form action="search.jsp" method="post">
+            
+              <!-- Default form error handling support -->
+              <dsp:droplet name="/atg/dynamo/droplet/ErrorMessageForEach">
+                <dsp:oparam name="output">
+                  <b><dsp:valueof param="message"/></b><br>
+                </dsp:oparam>
+                <dsp:oparam name="outputStart">
+                  <LI>
+                </dsp:oparam>
+                <dsp:oparam name="outputEnd">
+                  </LI>
+                </dsp:oparam>
+              </dsp:droplet>
+            
+              <dsp:input bean="SongSearchFormHandler.keywordInput" size="24" type="text"/><br>
+              <dsp:input bean="SongSearchFormHandler.successURL" type="hidden" value="searchResults.jsp"/>
+              <dsp:input bean="SongSearchFormHandler.search" type="submit" value="Search"/>
+            
+            </dsp:form>
 
             
           <!-- *** End real content *** -->

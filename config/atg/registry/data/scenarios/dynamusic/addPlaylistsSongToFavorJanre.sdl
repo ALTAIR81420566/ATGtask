@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE process SYSTEM "dynamosystemresource:/atg/dtds/pdl/pdl_1.0.dtd">
+<process author="admin" creation-time="1518429455201" enabled="true" last-modified-by="admin" modification-time="1518433335986">
+  <segment migrate-from="1518433024688" migrate-subjects="true">
+    <segment-name>Segment 1</segment-name>
+    <!--================================-->
+    <!--== A form is submitted Form name is addSong  -->
+    <!--================================-->
+    <event id="1">
+      <event-name>atg.das.FormSubmission</event-name>
+      <filter construct="event-property-filter" operator="eq">
+        <event-property construct="event-property">
+          <property-name>formName</property-name>
+        </event-property>
+        <constant>addSong</constant>
+      </filter>
+    </event>
+    <!--================================-->
+    <!--== Redirect to page with path /test.jhtml  -->
+    <!--================================-->
+    <action id="2">
+      <action-name>redirect</action-name>
+      <action-param name="scenarioPathInfo">
+        <constant>/test.jhtml</constant>
+      </action-param>
+    </action>
+  </segment>
+</process>

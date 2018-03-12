@@ -1,61 +1,76 @@
 <%@ taglib uri="/dspTaglib" prefix="dsp" %>
 <dsp:page>
 <dsp:importbean bean="/dynamusic/QuizFormHandler"/>
-<HTML>
-  <HEAD>
-    <TITLE>Quiz page</TITLE>
-  </HEAD>
+<!-------------------------------------------------------------
+  Dynamusic Site - Solutions
+  
+  QUIZ
+  
+  Deliver a user quiz.
+  
+  ------------------------------------------------------------->
 
-  <BODY>
-      <dsp:include page="common/header.jsp">
-         <dsp:param name="pagename" value="Quiz"/>
-      </dsp:include>
-  <table width="700" cellpadding="8">
-        <tr>
-          <!-- Sidebar -->
-            <td width="100" bgcolor="ghostwhite" valign="top">
-            <!-- (replace contents of this table cell by
-                  dynamically including common/sidebar.html) -->
-             <dsp:include page="common/sidebar.jsp">
-             </dsp:include>
-            </td>
-                <!-- Page Body -->
-            <td valign="top">
-                <font face="Verdana,Geneva,Arial" size="-1">
+<html>
+  <head>
+    <title>Dynamusic Quiz</title>
+  </head>
+  <body>
+    <dsp:include page="common/header.jsp">
+        <dsp:param name="pagename" value="Quiz"/>
+    </dsp:include>    
+    <table width="700" cellpadding="8">
+      <tr>
+        <!-- Sidebar -->
+        <td width="100" bgcolor="ghostwhite" valign="top">
+          <dsp:include page="common/sidebar.jsp"></dsp:include>
+        </td>
+        
+        <!-- Page Body -->
+        <td valign="top">
+          <font face="Verdana,Geneva,Arial" size="-1">
+          
+          <!-- *** Start page content *** -->
 
-                <dsp:form action="<%=request.getRequestURI()%>">
-                          <dsp:droplet name="/atg/dynamo/droplet/ErrorMessageForEach">
-                            <dsp:oparam name="output">
-                              <b><dsp:valueof param="message"/></b><br>
-                            </dsp:oparam>
-                          </dsp:droplet>
+          <!-- Default form Error Handling support -->
+          <dsp:droplet name="/atg/dynamo/droplet/ErrorMessageForEach">
+            <dsp:oparam name="output">
+              <li><dsp:valueof param="message"/></li>
+            </dsp:oparam>
+            <dsp:oparam name="outputStart">
+              <font color="red">I encountered problems processing this form:
+              <ul>
+            </dsp:oparam>
+            <dsp:oparam name="outputEnd">
+              </ul></font>
+            </dsp:oparam>
+          </dsp:droplet>
+          
+          <!-- The Form itself, in all its glory -->
+          <dsp:form action="quiz.jsp" method="post">
+            <font color="darkgreen" size="+2">
+              <dsp:valueof bean="QuizFormHandler.question"/>
+            </font>
+            <p>
+            Answer: <dsp:input type="text" bean="QuizFormHandler.userAnswer"/>
+            <p>
+              
+            <%-- Submission --%>
+            <dsp:input type="submit" value="Am I right?" bean="QuizFormHandler.validate"/>
+            &nbsp;
+            <dsp:input bean="/dynamusic/QuizFormHandler.cancel" type="Submit" value="Cancel"/>
+             
+            <%-- Redirection --%>
+            <dsp:input type="hidden" bean="QuizFormHandler.validateSuccessURL" 
+                       value="quizAnswer.jsp"/>
+          </dsp:form>
 
-                         <table cellpadding="10">
-                            <tr>
-                                <td valign="middle">
-                                   Question: <dsp:valueof bean="QuizFormHandler.question"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td valign="middle">
-                                   Your answer:
-                                </td>
-                                <td valign="middle">
-                                   <dsp:input bean="QuizFormHandler.userAnswer" type="text" required="<%=true%>"/> &nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td valign="middle">
-                                    <dsp:input type="submit" bean="QuizFormHandler.validate" value="Send Message"/>
-                                </td>
-                            </tr>
+          <!-- *** End real content *** -->
+          </font>
+        </td>
+      </tr>
+    </table>
+</body>
+</html>
 
-                         </table>
-                </dsp:form>
-            </td>
-        </tr>
 
-  </table>
-  </BODY>
-</HTML>
 </dsp:page>

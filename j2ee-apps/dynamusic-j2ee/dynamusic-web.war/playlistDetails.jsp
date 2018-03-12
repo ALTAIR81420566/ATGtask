@@ -1,73 +1,85 @@
 <%@ taglib uri="/dspTaglib" prefix="dsp" %>
 <dsp:page>
-<dsp:droplet name="/dynamusic/PlaylistLookupDroplet"/>
-<HTML>
-  <HEAD>
-    <TITLE>Playlist details</TITLE>
-  </HEAD>
 
-  <BODY>
+<% /* Requires input parameter: itemId (repositoryID of a playlist */ %>
 
-       <dsp:getvalueof param="itemName" id="iName"
-               idtype="java.lang.String">
-          <dsp:include page="common/header.jsp">
-             <dsp:param name="pagename" value="<%= iName %>"/>
-          </dsp:include>
-       </dsp:getvalueof>
+<html>
+<head>
+<!-------------------------------------------------------------
+  Dynamusic Site Mockup
+  
+  PlaylistDetails
+  
+  List the songs in a playlist.
+  
+  ------------------------------------------------------------->
+<title>Dynamusic Playlist</title>
+</head>
+<body>
+<dsp:droplet name="/atg/targeting/RepositoryLookup">
+  <dsp:param bean="/atg/userprofiling/ProfileAdapterRepository" name="repository"/>
+  <dsp:param name="itemDescriptor" value="playlist"/>
+  <dsp:param name="id" param="itemId"/>
+  <dsp:oparam name="output">
+    
+       <dsp:include page="common/header.jsp">
+          <dsp:param name="pagename" param="element.name"/>
+       </dsp:include>
 
-        <table width="700" cellpadding="8">
-            <tr>
-              <!-- Sidebar -->
-                <td width="100" bgcolor="ghostwhite" valign="top">
-                <!-- (replace contents of this table cell by
-                      dynamically including common/sidebar.html) -->
-                 <dsp:include page="common/sidebar.jsp">
-                 </dsp:include>
-                </td>
+       <table CELLPADDING=8 WIDTH="700" >
+          <tr>
+             <!-- Sidebar -->
+             <td width="100" bgcolor="ghostwhite" valign="top">
+                 <dsp:include page="common/sidebar.jsp"></dsp:include>
+				     </td>
 
-                <td>
-                  <dsp:droplet name="/dynamusic/PlaylistLookupDroplet">
-                    <dsp:param name="id" param="itemId"/>
-                    <dsp:oparam name="output">
-                        <dsp:droplet name="/atg/dynamo/droplet/ForEach">
-                          <dsp:param name="array" param="element.songs"/>
-                          <dsp:oparam name="outputStart">
-                            <ul>
-                          </dsp:oparam>
-                          <dsp:oparam name="outputEnd">
-                            </ul>
-                          </dsp:oparam>
-                          <dsp:oparam name="output">
-                            <li>
-                               <dsp:a href="song.jsp">
-                                    <dsp:param name="itemId" param="element.id"/>
-                                  <dsp:valueof param="element.title"/>
-                               </dsp:a>
-                          </dsp:oparam>
-                          <dsp:oparam name="empty">
-                            There are no songs in this playlist.
-                          </dsp:oparam>
-                        </dsp:droplet>
-                        </br>
-                        <dsp:a href="editPlaylist.jsp">
-                             <dsp:param name="playlistId" param="element.id"/>
-                             Edit playlist
-                        </dsp:a>
+             <!-- Page Body -->
+             <td VALIGN=TOP>
+               <!-- *** Start page content *** -->
+               <table CELLPADDING=8>
+                <tr>
+                  <td ALIGN=RIGHT>Playlist Name:</td>
+                  <td> <font face="Verdana,Geneva,Arial" size="-1"><b><dsp:valueof param="element.name"/></b></font></td>
+                </tr>
+                <tr>
+                  <td ALIGN=RIGHT>Description:</td>
+                  <td><font face="Verdana,Geneva,Arial" size="-1"><dsp:valueof param="element.description"/></font></td>
+                </tr>
+                <tr>
+							    <td  ALIGN=RIGHT VALIGN=TOP>Songs:</td>
+                  <td VALIGN=TOP ><font face="Verdana,Geneva,Arial" size="-1">
+							 <dsp:droplet name="/atg/dynamo/droplet/ForEach">
+							   <dsp:param name="array" param="element.songs"/>
+							   <dsp:oparam name="output">
+							    <b> <dsp:a href="song.jsp">
+                         <dsp:param name="itemId" param="element.id"/>
+                           <dsp:valueof param="element.title"/>
+                       </dsp:a></b>
+                        by <dsp:a href="artistDetails.jsp">
+                         <dsp:param name="itemId" param="element.artist.id"/>
+                            <dsp:valueof param="element.artist.name"/>
+                        </dsp:a><br>
+								
+								
+					 
+		  </dsp:oparam>
+		  <dsp:oparam name="empty">
+		     No songs on this playlist yet.
+		  </dsp:oparam>
+		 </dsp:droplet>
+                  </font>
+                 </td>
+                </tr>
 
-                    </dsp:oparam>
-                    <dsp:oparam name="empty">
-                        No playlist with ID=<dsp:valueof param="itemId">NONE</dsp:valueof> was found, sorry.
-                    </dsp:oparam>
-                  </dsp:droplet>
+   	      </table>
+             </td>
+          </tr>
+       </table>
 
+  </dsp:oparam>
 
+</dsp:droplet>
 
-                </td>
-
-
-            </tr>
-
-        </table>
-  </BODY>
-</HTML>
+</body>
+</html>
 </dsp:page>

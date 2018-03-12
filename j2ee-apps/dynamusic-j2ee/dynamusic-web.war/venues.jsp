@@ -24,6 +24,8 @@
         <td width="100" bgcolor="ghostwhite" valign="top">
           <dsp:include page="common/sidebar.jsp">
           </dsp:include>
+          <hr>
+          <a href="newVenue.jsp">Add Venue</a>
         </td>
         <!-- Page Body -->
         <td valign="top">

@@ -8,7 +8,7 @@
     <!--================================-->
     <event id="1">
       <event-name>atg.dps.ViewItem</event-name>
-      <filter construct="content-songRepo-filter" operator="eq">
+      <filter construct="content-repository-filter" operator="eq">
         <event-property>
           <property-name>repositoryName</property-name>
         </event-property>

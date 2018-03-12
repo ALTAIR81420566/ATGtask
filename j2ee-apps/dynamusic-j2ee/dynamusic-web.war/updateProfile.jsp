@@ -74,6 +74,10 @@
             <dsp:input bean="/atg/userprofiling/ProfileFormHandler.value.shareProfile" name="shareProfile" type="radio" value="true"/>yes<br>
             <dsp:input bean="/atg/userprofiling/ProfileFormHandler.value.shareProfile" name="shareProfile" type="radio" value="false"/>no<br>
             <br>
+            Automatically add new songs to your New Songs playlist?<br>
+            <dsp:input bean="/atg/userprofiling/ProfileFormHandler.value.newSongsAutoUpdate" name="newSongsAutoUpdate" type="radio" value="true"/>yes<br>
+            <dsp:input bean="/atg/userprofiling/ProfileFormHandler.value.newSongsAutoUpdate" name="newSongsAutoUpdate" type="radio" value="false"/>no<br>
+            <br>
             Personal info:<br>
             <dsp:textarea bean="/atg/userprofiling/ProfileFormHandler.value.info" name="info" rows="5" cols="40"/><br>
             <br>

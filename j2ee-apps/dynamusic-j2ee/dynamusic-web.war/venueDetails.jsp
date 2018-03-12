@@ -26,7 +26,12 @@
              <!-- Sidebar -->
              <td width="100" bgcolor="ghostwhite" valign="top">
                  <dsp:include page="common/sidebar.jsp"></dsp:include>
-				     </td>
+                 <hr>
+                 <dsp:a href="editVenue.jsp">
+                    <dsp:param name="itemId" param="itemId"/>
+                    Edit venue
+                 </dsp:a>
+	    </td>
 
              <!-- Page Body -->
             <td VALIGN=TOP>

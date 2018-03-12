@@ -25,22 +25,21 @@ You must set artistId to a value (append "?artistId=xxxx" to the URL and reload)
     <dsp:oparam name="false">
        Artist Id = <dsp:valueof param="artistId">unset</dsp:valueof><br>
 
-<%!    dynamusic.SongsManager sm; %>
- <dsp:getvalueof id="sm" bean="SongsManager"
-idtype="dynamusic.SongsManager">
-
+<%! Object temp;
+    dynamusic.SongsManager sm; 
+%>
+<dsp:getvalueof id="temp" bean="SongsManager" >
    <dsp:getvalueof id="artistId" param="artistId" >
 <%
-
     try {
+      sm = (dynamusic.SongsManager)temp;
       sm.deleteAlbumsByArtist(artistId.toString());
       out.println("Succeeded.<br>");
     }
     catch (Exception e) {
-      out.println("Failed.  Exception occurred: " + e + "<br>");
+      out.println("Failed.  Exception occured: " + e + "<br>");
     }
 %>
-
    </dsp:getvalueof>
 </dsp:getvalueof>
 

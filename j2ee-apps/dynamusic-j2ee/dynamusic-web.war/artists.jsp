@@ -20,8 +20,7 @@
 
   <dsp:include page="common/header.jsp">
     <dsp:param name="pagename" value="Artists"/>
-  </dsp:include>
-
+  </dsp:include>    
     <table width="700" cellpadding="8">
       <tr>
         <!-- Sidebar -->
@@ -29,38 +28,43 @@
           <dsp:include page="common/sidebar.jsp"></dsp:include> 
           <br>
           <font face="Verdana,Geneva,Arial" size="-1" color="steelblue">
-            <b><a href="newArtist.jsp">Add Artist</a></b></font>
+            <b><a href="newArtist.jsp">Add Artist</a></b></font>     
         </td>
         <!-- Page Body -->
 
+        <td valign="top">
+          <font face="Verdana,Geneva,Arial" size="-1">
 
+          <!-- *** Start page content *** -->
 
-
-
-
-<td VALIGN=TOP><!-- *** Start page content *** -->
-  <ol>
-    <dsp:droplet name="/atg/dynamo/droplet/RQLQueryForEach">
-            <dsp:param name="itemDescriptor" value="artist"/>
+          <dsp:droplet name="/atg/dynamo/droplet/RQLQueryForEach">
+            <dsp:param name="queryRQL" value='ALL ORDER BY name'/>
             <dsp:param name="repository" value="/dynamusic/SongsRepository"/>
-            <dsp:param name="queryRQL" value="ALL ORDER BY name"/>
+            <dsp:param name="itemDescriptor" value="artist"/>
+            <dsp:oparam name="outputStart">
+              <ul>
+            </dsp:oparam>
+            <dsp:oparam name="outputEnd">
+              </ul>
+            </dsp:oparam>
             <dsp:oparam name="output">
-              <li><dsp:a href="artistDetails.jsp">
-                     <dsp:param name="itemId" param="element.id" />
-                     <dsp:valueof param="element.name"/>
-                  </dsp:a>
+              <li>
+                <dsp:a href="artistDetails.jsp">
+                  <dsp:param name="itemId" param="element.id" />
+                  <dsp:valueof param="element.name"/>
+                </dsp:a>  
             </dsp:oparam>
             <dsp:oparam name="empty">
-              Artists mot exist
+              <p>No artists currently available, sorry.
             </dsp:oparam>
-    </dsp:droplet>
-  </ol>
-          <!-- *** End content *** -->
+          </dsp:droplet>
+
+
+        <!-- *** End content *** -->
           
           </font>
         </td>
     </table>
-
   </BODY>
 </HTML>
 </dsp:page>

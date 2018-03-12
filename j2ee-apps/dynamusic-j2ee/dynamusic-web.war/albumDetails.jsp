@@ -32,6 +32,11 @@
           <!-- (replace contents of this table cell by 
                 dynamically including common/sidebar.html) -->
           <dsp:include page="common/sidebar.jsp"></dsp:include>
+          <hr>
+          <dsp:a href="newSong.jsp">
+             <dsp:param name="albumId" param="itemId"/>
+             <font face="Verdana,Geneva,Arial" size="-1"><b>Add Song</b></font>
+          </dsp:a>
         </td>
 
 
@@ -54,6 +59,31 @@
                 </td>
               </tr>
             </table>
+<!-- Chapter 1 Lab Impact: This ForEach was added to accomodate the new artists property -->
+Artists:<br>
+            <dsp:droplet name="/atg/dynamo/droplet/ForEach">
+              <dsp:param name="array" param="element.artists"/>
+              <dsp:oparam name="outputStart">
+                <ul>
+              </dsp:oparam>
+              <dsp:oparam name="outputEnd">
+                </ul>
+              </dsp:oparam>
+              <dsp:oparam name="output">
+ 							  
+                <li>
+                   <dsp:a href="artistDetails.jsp">
+	                    <dsp:param name="itemId" param="element.id"/>
+                      <dsp:valueof param="element.name"/>
+                   </dsp:a>
+
+              </dsp:oparam>
+              <dsp:oparam name="empty">
+                No songs listed for this album.
+              </dsp:oparam>
+            </dsp:droplet>
+
+Songs:<br>
             <dsp:droplet name="/atg/dynamo/droplet/ForEach">
               <dsp:param name="array" param="element.songList"/>
               <dsp:oparam name="outputStart">
@@ -72,7 +102,7 @@
             
               </dsp:oparam>
               <dsp:oparam name="empty">
-                There are no songs in this album.
+                No songs listed for this album.
               </dsp:oparam>
             </dsp:droplet>
             

@@ -36,15 +36,30 @@
           
           <!-- *** Start page content *** -->
           
-            <p>The following songs match your criteria, <font color="red">Man</font>: <p>
-            
-            <ul>
-              <li> <a href="song.html">Man in the Moon</a> by <a href="artistDetails.html">R.E.M.</a> 
-              <li> <a href="song.html">I'm Your Man</a> by <a href="artistDetails.html">Leonard Cohen</a> 
-              <li> <a href="song.html">Missionary Man</a> by <a href="artistDetails.html">Eurythmics</a> 
-              <li> <a href="song.html">First We Take Manhattan</a> by <a href="artistDetails.html">Leonard Cohen</a>
-            </ul>
+            <p>The following songs match your criteria, <font color="red"><dsp:valueof bean="SongSearchFormHandler.keywordInput"/></font>: <p>
+            <dsp:droplet name="/atg/dynamo/droplet/ForEach">
+              <dsp:param bean="SongSearchFormHandler.searchResults" name="array"/>
+              <dsp:oparam name="outputStart">
+                <ul>
+              </dsp:oparam>
+              <dsp:oparam name="outputEnd">
+                </ul>
+              </dsp:oparam>
+              <dsp:oparam name="output">
+                <li><dsp:a href="song.jsp">
+                      <dsp:param name="itemId" param="element.id"/>
+                      <dsp:valueof param="element.title"/>
+                 </dsp:a> by
+                     <dsp:a href="artistDetails.jsp">
+                       <dsp:param name="itemId" param="element.artist.id"/>
+                      <dsp:valueof param="element.artist.name"/>
+                     </dsp:a>
 
+              </dsp:oparam>
+              <dsp:oparam name="empty">
+                Sorry, no songs matched your search criteria.
+              </dsp:oparam>
+            </dsp:droplet>
             
           <!-- *** End real content *** -->
           
