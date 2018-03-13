@@ -12,10 +12,8 @@
         </description>
     </header>
 
-    <item-descriptor name="song" display-property="title">
-        <table name="dynamusic_song"
-               type="primary"
-               id-column-name="id">
+    <item-descriptor name="song" display-property="title" sub-type-property="type">
+        <table name="dynamusic_song" type="primary" id-column-name="id">
             <property name="id" data-type="string"/>
             <property name="title" column-name="title" data-type="string"/>
             <property name="songGenre" column-name="genre" data-type="enumerated">
@@ -29,6 +27,17 @@
             <property name="downloadURL" column-name="download" data-type="string"/>
             <property name="artist" column-name="artist" item-type="artist"/>
             <property name="description" column-name="lyrics" data-type="string"/>
+            <property name="type" column-name="song_type" data-type="enumerated">
+                <attribute name="useCodeForValue" value="false"/>
+                <option value="classical" code="1"/>
+                <option value="non-classical " code="2"/>
+            </property>
+        </table>
+    </item-descriptor>
+
+    <item-descriptor name="classical-song" super-type="song" sub-type-value="classical">
+        <table name="dynamusic_classical_song" type="auxiliary" id-column-name="song_id">
+            <property name="performer" data-type="string"/>
         </table>
     </item-descriptor>
 
@@ -64,6 +73,14 @@
             <property name="description" column-name="description" data-type="string"/>
             <property name="date" column-name="published" data-type="timestamp"/>
             <property name="artist" column-name="artist" item-type="artist"/>
+            <property name="albumGenre" column-name="genre" data-type="enumerated">
+                <attribute name="useCodeForValue" value="false"/>
+                <option value="jazz"/>
+                <option value="country"/>
+                <option value="pop"/>
+                <option value="blues"/>
+                <option value="classical"/>
+            </property>
         </table>
         <table name="dynamusic_album_songs" type="multi"
                id-column-name="album_id">
@@ -72,9 +89,16 @@
                       column-name="song_list"
                       cascade="delete"/>
         </table>
+        <property name="genre" data-type="string" writable="true">
+            <derivation override-property="albumGenre">
+                <expression>artist.artistGenre</expression>
+            </derivation>
+        </property>
+
         <table name="dynamusic_artist_album" type="multi" id-column-name="album_id">
             <property name="artists" data-type="set" component-item-type="artist" column-name="artist_id"/>
         </table>
+
     </item-descriptor>
 
 

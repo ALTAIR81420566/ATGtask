@@ -4,43 +4,54 @@
      The comments below coincide with the instructions in the
      lab.
  -->
-     
+
 <gsa-template>
 
-	<item-descriptor name="playlist" display-property="name">
-		<table name="dynamusic_playlist" type="primary" id-column-names="id">
-			<property name="id" data-type="string" column-name="id"/>
-			<property name="name" data-type="string"/>
-			<property name="description" data-type="string"/>
-			<property name="publish" data-type="boolean"/>
-		</table>
-		<table name="dynamusic_playlist_song" type="multi" id-column-names="pl_id">
-			<property name="songs" column-names="SONG_ID" data-type="set" component-item-type="song" repository="/dynamusic/SongsRepository"/>
-		</table>
-	</item-descriptor>
+    <item-descriptor name="playlist" display-property="name">
+        <table name="dynamusic_playlist" type="primary" id-column-names="id">
+            <property name="id" data-type="string" column-name="id"/>
+            <property name="name" data-type="string"/>
+            <property name="description" data-type="string"/>
+            <property name="publish" data-type="boolean"/>
+        </table>
+        <table name="dynamusic_playlist_song" type="multi" id-column-names="pl_id">
+            <property name="songs" column-names="SONG_ID" data-type="set" component-item-type="song"
+                      repository="/dynamusic/SongsRepository"/>
+        </table>
+    </item-descriptor>
 
 
- <item-descriptor name="user" >
- 
- 	<table name="dynamusic_user_playlists" type="multi" id-column-name="user_id">	
-		<property name="playlists" category="dynamusic" column-name="pl_id" data-type="set" component-item-type="playlist"/>
-	</table>
+    <item-descriptor name="user">
 
-    <table name="dynamusic_user" type="auxiliary" id-column-name="user_id">	
-		<property name="info" column-name="info" data-type="string"/>
-		<property name="shareProfile" column-name="share_profile" data-type="boolean"/>
-	</table>
-	
-    <table name="dynamusic_prefgenres" type="multi" id-column-name="id">	
-		<property name="prefGenres" column-name="genre" data-type="set" component-data-type="string"/>
-	</table>
-    
-    <table name="dynamusic_viewedartists" type="multi" id-column-name="user_id">	
-		<property name="viewedArtists" column-name="artist_id" data-type="set" component-item-type="artist" repository="/dynamusic/SongsRepository"/>
-	</table>    
-	
+        <table name="dynamusic_user_playlists" type="multi" id-column-name="user_id">
+            <property name="playlists" category="dynamusic" column-name="pl_id" data-type="set"
+                      component-item-type="playlist"/>
+        </table>
 
-	
- </item-descriptor>
+        <table name="dynamusic_user" type="auxiliary" id-column-name="user_id">
+            <property name="info" column-name="info" data-type="string"/>
+            <property name="shareProfile" column-name="share_profile" data-type="boolean"/>
+        </table>
+
+        <table name="dynamusic_prefgenres" type="multi" id-column-name="id">
+            <property name="prefGenres" column-name="genre" data-type="set" component-data-type="string"/>
+        </table>
+
+        <table name="dynamusic_viewedartists" type="multi" id-column-name="user_id">
+            <property name="viewedArtists" column-name="artist_id" data-type="set" component-item-type="artist"
+                      repository="/dynamusic/SongsRepository"/>
+        </table>
+
+        <property name="ageInYears" data-type="int" property-type="dynamusic.FindAge"
+                  default="0" category="dynamusic" queryable="false">
+            <attribute name="ageFormat" value="years" data-type="string"/>
+        </property>
+
+        <property name="ageInDays" data-type="int" property-type="dynamusic.FindAge"
+                  default="0" category="dynamusic" queryable="false">
+            <attribute name="ageFormat" value="days" data-type="string"/>
+        </property>
+
+    </item-descriptor>
 
 </gsa-template>

@@ -31,50 +31,57 @@ public class UploadSongHandler extends RepositoryFormHandler {
 
     SongsManager mSM;
     String mUserid;
-        
-    public SongsManager getSongsManager() { return mSM; }
-    public void setSongsManager(SongsManager pSM) { mSM = pSM; }
 
-    public String getUserid() { return mUserid; }
-    public void setUserid(String pUserid) { mUserid = pUserid; }
-    
-                             
-    protected void postCreateItem(DynamoHttpServletRequest pRequest, 
-                         DynamoHttpServletResponse pResponse) 
-                      throws javax.servlet.ServletException,
-                              java.io.IOException {
-     
-       	if (isLoggingDebug())
-  		logDebug("postCreateItem called, item created: " + getRepositoryItem());
-  	        
+    public SongsManager getSongsManager() {
+        return mSM;
+    }
+
+    public void setSongsManager(SongsManager pSM) {
+        mSM = pSM;
+    }
+
+    public String getUserid() {
+        return mUserid;
+    }
+
+    public void setUserid(String pUserid) {
+        mUserid = pUserid;
+    }
+
+
+    protected void postCreateItem(DynamoHttpServletRequest pRequest,
+                                  DynamoHttpServletResponse pResponse)
+            throws javax.servlet.ServletException,
+            java.io.IOException {
+
+        if (isLoggingDebug())
+            logDebug("postCreateItem called, item created: " + getRepositoryItem());
+
 
         SongsManager sm = getSongsManager();
         String userid = getUserid();
         String artistid = null;
         String songid = getRepositoryItem().getRepositoryId();
-   
+
         if (sm != null) {
-             try {
-                artistid = sm.createArtistFromUser(userid);                
-                sm.addArtistToSong(songid,artistid);
-             }
-             catch (RepositoryException re) {
+            try {
+                artistid = sm.createArtistFromUser(userid);
+                sm.addArtistToSong(songid, artistid);
+            } catch (RepositoryException re) {
                 if (isLoggingError())
-                   logError("Cannot add song to artist", re);
+                    logError("Cannot add song to artist", re);
                 addFormException(new DropletException("unable to add artist for song"));
                 try {
-                   sm.getTransactionManager().setRollbackOnly();
-                }
-                catch(Exception e) {
+                    sm.getTransactionManager().setRollbackOnly();
+                } catch (Exception e) {
                     if (isLoggingError())
-                       logError("Adding song failed but rollback failed too", e);
+                        logError("Adding song failed but rollback failed too", e);
                 }
-             }
-        }
-        else {
-           if (isLoggingWarning())
+            }
+        } else {
+            if (isLoggingWarning())
                 logWarning("no songs manager set");
         }
-  	  	
+
     }
 }

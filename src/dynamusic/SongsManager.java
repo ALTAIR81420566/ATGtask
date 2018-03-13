@@ -15,6 +15,7 @@ import javax.transaction.TransactionManager;
 public class SongsManager extends atg.nucleus.GenericService {
     private Repository songRepo;
     private Repository eventRepo;
+    private Repository userRepository = null;
     private TransactionManager transactionManager;
 
     public TransactionManager getTransactionManager() {
@@ -30,6 +31,14 @@ public class SongsManager extends atg.nucleus.GenericService {
             logDebug("getEventRepo");
         }
         return eventRepo;
+    }
+
+    public Repository getUserRepository() {
+        return userRepository;
+    }
+
+    public void setUserRepository(Repository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public void setEventRepo(Repository eventRepo) {
@@ -103,6 +112,84 @@ public class SongsManager extends atg.nucleus.GenericService {
     }
 
 
+
+    public void addArtistToSong(String pSongid, String pArtistid) throws RepositoryException {
+        if (isLoggingDebug())
+            logDebug("adding song " + pSongid + " to artist " + pArtistid);
+
+        MutableRepository mutRepos = (MutableRepository) getSongRepo();
+
+        try {
+            MutableRepositoryItem mutSongItem = mutRepos.getItemForUpdate(pSongid,"song");
+            RepositoryItem artistItem = mutRepos.getItem(pArtistid,"artist");
+            if (isLoggingDebug())
+                logDebug("adding song " + mutSongItem + " to artist " + artistItem);
+            mutSongItem.setPropertyValue("artist",artistItem);
+            mutRepos.updateItem(mutSongItem);
+
+        }
+        catch(RepositoryException e) {
+            if (isLoggingError()) {
+                logError(e);
+            }
+            throw e;
+        }
+
+    }
+
+    public String createArtistFromUser(String pUserid) throws RepositoryException {
+
+        if (isLoggingDebug())
+            logDebug("creating new artist from user item " + pUserid);
+
+        MutableRepository mutRepos = (MutableRepository) getSongRepo();
+        Repository userRepos = getUserRepository();
+
+        RepositoryItem user = userRepos.getItem(pUserid, "user");
+        String username = (String)user.getPropertyValue("firstName") + " " + user.getPropertyValue("lastName");
+        String description = (String)user.getPropertyValue("info");
+        Boolean shareProfile = (Boolean)user.getPropertyValue("shareProfile");
+        RepositoryItem artistItem = null;
+
+      /* First, check if an artist has already been created for this user */
+        RqlStatement finduserRQL = RqlStatement.parseRqlStatement("name = ?0");
+        RepositoryView artistView = mutRepos.getView("artist");
+        Object rqlparams[] = new Object[1];
+        rqlparams[0] = username;
+        RepositoryItem [] artistList =
+                finduserRQL.executeQuery (artistView, rqlparams);
+
+
+        if (artistList != null) {
+            if (isLoggingDebug()) logDebug("artists found for this user:" + artistList.length + " (using artist: " + artistList[0] + ")");
+            artistItem = artistList[0];
+        }
+        else {
+            try {
+                MutableRepositoryItem mutArtistItem = mutRepos.createItem("artist");
+                mutArtistItem.setPropertyValue("name", username);
+         /* TBD test shareProfile if (shareProfile) */
+                mutArtistItem.setPropertyValue("description",description);
+                mutRepos.addItem(mutArtistItem);
+                artistItem = mutArtistItem;
+                if (isLoggingDebug())
+                    logDebug("no artists found for this user, new artist " + mutArtistItem + " created.");
+
+            }
+            catch (RepositoryException e) {
+                if (isLoggingError()) {
+                    logError(e);
+                }
+                throw e;
+            }
+        }
+        return artistItem.getRepositoryId();
+    }
+
     public SongsManager() {
+    }
+
+    public void addSongToAlbum(String repositoryId, String albumId) {
+
     }
 }

@@ -30,47 +30,44 @@ import atg.adapter.gsa.EnumPropertyDescriptor;
 public class EnumeratedProperties {
 
 
-    public static String[] getEnumeratedProperties(Repository pRepository, 
-    	String pItemDescriptorName, String pPropertyName) throws RepositoryException {
-     
+    public static String[] getEnumeratedProperties(Repository pRepository,
+                                                   String pItemDescriptorName, String pPropertyName) throws RepositoryException {
+
 
         try {
-   
-           //Get a GSAItemDescriptor object for the item type:
-           GSAItemDescriptor gid = null;
-        
-            if (pItemDescriptorName!= null) {
-            	RepositoryItemDescriptor rid = pRepository.getItemDescriptor(pItemDescriptorName);
-            	gid = (GSAItemDescriptor) rid;
+
+            //Get a GSAItemDescriptor object for the item type:
+            GSAItemDescriptor gid = null;
+
+            if (pItemDescriptorName != null) {
+                RepositoryItemDescriptor rid = pRepository.getItemDescriptor(pItemDescriptorName);
+                gid = (GSAItemDescriptor) rid;
             }
-            
+
             //Get an EnumPropertyDescriptor object for the property:
-            	EnumPropertyDescriptor epd = null;
+            EnumPropertyDescriptor epd = null;
             if ((pPropertyName != null) && (gid != null)) {
                 RepositoryPropertyDescriptor rpd = gid.getRepositoryPropertyDescriptor(pPropertyName);
                 if (java.lang.Class.forName("atg.adapter.gsa.GSAPropertyDescriptor").isInstance(rpd) == false) {
                     throw new RepositoryException("not a GSA property");
                 }
-            	GSAPropertyDescriptor gpd = gid.getGSAPropertyDescriptor(pPropertyName);
-            	epd = (EnumPropertyDescriptor)gpd;
+                GSAPropertyDescriptor gpd = gid.getGSAPropertyDescriptor(pPropertyName);
+                epd = (EnumPropertyDescriptor) gpd;
             }
-       
+
             if (epd != null) {
-            	String[] enumValues = epd.getEnumeratedValues();
-            	return enumValues;
-            }
-            else
-               throw new RepositoryException("no enumerated values found");
-        }
-        catch (RepositoryException e) {
-               System.out.println("==EnumeratedProperties choking on: " + e);
-               throw e;
-        }
-        catch (ClassNotFoundException cnfe) {
-               System.out.println("Class not found exception");
-               throw new RepositoryException("Wrong class");
+                String[] enumValues = epd.getEnumeratedValues();
+                return enumValues;
+            } else
+                throw new RepositoryException("no enumerated values found");
+        } catch (RepositoryException e) {
+            System.out.println("==EnumeratedProperties choking on: " + e);
+            throw e;
+        } catch (ClassNotFoundException cnfe) {
+            System.out.println("Class not found exception");
+            throw new RepositoryException("Wrong class");
         }
     }
-    
-    
+
+
 }

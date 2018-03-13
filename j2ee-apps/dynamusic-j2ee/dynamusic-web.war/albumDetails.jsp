@@ -2,13 +2,13 @@
 <dsp:page>
 <!-------------------------------------------------------------
   Dynamusic Site Mockup
-  
+
   ALBUM DETAILS
-  
+
   Description of an album and list of songs.
-  
+
   ------------------------------------------------------------->
-  
+
 
 <HTML>
   <HEAD>
@@ -20,7 +20,7 @@
     <dsp:param name="id" param="itemId"/>
     <dsp:oparam name="output">
 
-    <!-- (replace this entire table by dynamically including 
+    <!-- (replace this entire table by dynamically including
           common/header.html) -->
     <dsp:include page="common/header.jsp">
         <dsp:param name="pagename" param="element.title"/>
@@ -29,7 +29,7 @@
       <tr>
         <!-- Sidebar -->
         <td width="100" bgcolor="ghostwhite" valign="top">
-          <!-- (replace contents of this table cell by 
+          <!-- (replace contents of this table cell by
                 dynamically including common/sidebar.html) -->
           <dsp:include page="common/sidebar.jsp"></dsp:include>
           <hr>
@@ -44,17 +44,18 @@
 
         <td valign="top">
           <font face="Verdana,Geneva,Arial" size="-1">
-          
+
           <!-- *** Start page content *** -->
-            
+
             <table cellpadding="10">
               <tr>
                 <td valign="top"> <img src="<dsp:valueof param='element.coverURL'/>"></td>
                 <td valign="top">
                   <font face="Geneva,Arial" size="-1">
                      <dsp:valueof param="element.description"/>
-                  
+
 		  <b><p>Published: <dsp:valueof param="element.date" date="MMM dd,yyyy"/><b>
+		  <b><p>Genre: <dsp:valueof param="element.genre"/><b>
                   </font>
                 </td>
               </tr>
@@ -70,7 +71,7 @@ Artists:<br>
                 </ul>
               </dsp:oparam>
               <dsp:oparam name="output">
- 							  
+
                 <li>
                    <dsp:a href="artistDetails.jsp">
 	                    <dsp:param name="itemId" param="element.id"/>
@@ -93,19 +94,19 @@ Songs:<br>
                 </ul>
               </dsp:oparam>
               <dsp:oparam name="output">
- 							  
+
                 <li>
                    <dsp:a href="song.jsp">
 	                    <dsp:param name="itemId" param="element.id"/>
                       <dsp:valueof param="element.title"/>
                    </dsp:a>
-            
+
               </dsp:oparam>
               <dsp:oparam name="empty">
                 No songs listed for this album.
               </dsp:oparam>
             </dsp:droplet>
-            
+
           </font>
         </td>
      </tr>
